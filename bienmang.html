@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-size: ;
+        }
+    </style>
+</head>
+<body>
+    <div>Tên:  <span id ="ten_id">?</span> </div>
+    <div>Tuổi: <span id ="sotuoi_id">?</span> </div>
+    <div>Ngoại hình: <span id = "ngoaihinh_id">Đẹp trai</span> </div>
+    <div>Tính cách: <span id = "tinhcach_id"> Hài Hước</span> </div>
+
+    <label>Tài khoản: </label><input id="inp-tk"> <br/>
+    <label>Mật khẩu: </label><input id="inp-mk" type="password"> <br/>
+    <label>Xác nhận mật khẩu: </label><input id="inp-xnmk" type="password"> <br/>
+    <button id ="nutdangky" onclick="chucnang_dangky()">Đăng ký</button>
+    <br></br><br></br><br></br>
+    <h1>Đăng nhập</h1>
+    <label>Tài khoản: </label><input id="login-tk"> <br/>
+    <label>Mật khẩu: </label><input id="login-mk" type="password"> <br/>
+    <button id ="nutdangnhap" onclick="chucnang_dangnhap()">Đăng nhập</button>
+
+</body>
+<script>
+   //Phần tuổi:
+   var tuoi = 10 +Math.floor(Math.random()*60);
+    var element_sotuoi = document.getElementById("sotuoi_id");
+    element_sotuoi.innerHTML = tuoi.toString();
+
+    //Phần họ:
+    var surnames = ["Nguyễn Văn","Lê Hoàng","Nguyễn Thiện","Trần Gia","Nguyễn Thái","Hà Cẩm"];
+    var so_ngau_nhien_ho = Math.floor(Math.random()*5);
+
+    //Phần tên:
+    var names = ["khánh", "Long", "Tuấn", "Phúc", "Quân", "Đông"];
+    var element_ten = document.getElementById("ten_id");
+
+    var so_ngau_nhien = Math.floor(Math.random() *6);
+    element_ten.innerHTML= surnames[so_ngau_nhien_ho]+ " " + names[so_ngau_nhien];
+
+    //localStorage.setItem("Gia đình có mấy người",4)
+
+    function chucnang_dangky() {
+        var noidung_taikhoan = document.getElementById("inp-tk").value;
+        var noidung_matkhau = document.getElementById("inp-mk").value;
+        var noidung_xacnhan = document.getElementById("inp-xnmk").value;
+
+        if (noidung_matkhau == noidung_xacnhan) {
+            var newObj = {account:noidung_taikhoan, password: noidung_matkhau};
+            var newJSON = JSON.stringify(newObj);
+            localStorage.setItem("tk_"+noidung_taikhoan, newJSON);
+            alert("Đăng ký thành công");
+        } else{
+            alert ("Ngu quá sai kìa");
+        }
+            
+     }
+
+     function chucnang_dangnhap(){
+        var noidung_taikhoan = document.getElementById("login-tk").value;
+        var noidung_matkhau = document.getElementById("login-mk").value;
+
+        var taikhoantimduoc = localStorage.getItem("tk_" + noidung_taikhoan);
+        if (taikhoantimduoc == null) {
+            alert("Tài khoản không tồn tại!");
+        } else {
+            var obj_taikhoan = JSON.parse(taikhoan_timduoc); 
+            if (noidung_matkhau == obj_taikhoan.password) {
+                alert("Đăng nhập thành công");
+            } else {
+                alert("Ngu quá cút");
+            }
+        }
+     }
+</script>
+</html>

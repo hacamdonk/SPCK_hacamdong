@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<style>
+	.test {
+    	background-color: red;
+        width: 200px;
+        height: 200px;
+        margin: 5px;
+        
+        display: inline-block;
+    }
+    .caunoi{
+    	display:none;
+    }
+    
+    @media screen and (max-width:650px){
+    	.test{
+   			width:100%; 
+       	}
+        .caunoi{
+        	display:block;
+        }
+    
+    }
+</style>
+<body>
+<div class ="test"> ABC </div>
+<div class ="test"> ABC </div>
+<div class ="test"> ABC </div>
+<div class ="caunoi"> Và các nội dung sau: </div>
+<div class ="test"> ABC </div>
+<div class ="test"> ABC </div>
